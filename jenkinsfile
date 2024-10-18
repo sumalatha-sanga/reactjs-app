@@ -1,1 +1,17 @@
 
+pipeline {
+    agent any
+    stages {
+  stage('Build') {
+steps {
+sh '''cd $WORKSPACE
+docker build -t talent/reactjs:v${BUILD_NUMBER} .'''
+}
+}
+stage('push ecr'){
+steps{
+sh '''aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 533266970461.dkr.ecr.us-west-2.amazonaws.com '''
+docker tag talent/reactjs:latest 533266970461.dkr.ecr.us-west-2.amazonaws.com/talent/reactjs:v
+docker push 533266970461.dkr.ecr.us-west-2.amazonaws.com/talent/reactjs:v${BUILD_NUMBER}
+}
+}
