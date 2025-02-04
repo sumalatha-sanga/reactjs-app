@@ -15,3 +15,4 @@ docker tag talent/reactjs:latest 533266970461.dkr.ecr.us-west-2.amazonaws.com/ta
 docker push 533266970461.dkr.ecr.us-west-2.amazonaws.com/talent/reactjs:v${BUILD_NUMBER}
 }
 }
+yufgkj
